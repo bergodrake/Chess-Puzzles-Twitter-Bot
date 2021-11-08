@@ -11,6 +11,8 @@ import os
 from csv import reader
 from random import choice
 from authorization_tokens import *
+import schedule
+import time
 
 
 def twitter_authorization():
@@ -178,4 +180,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    schedule.every().hour.do(main())
+    while True:
+        schedule.run_pending()
+        time.sleep(15)
+        print("Bot Running..")
+        time.sleep(15)
+
